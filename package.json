@@ -1,0 +1,17 @@
+{
+  "name": "music-family-portfolio",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.18.0"
+  },
+  "scripts": {
+    "lint": ".ci/node_modules/.bin/oxlint --config .oxlintrc.json samples",
+    "format:check": ".ci/node_modules/.bin/oxfmt --check samples projects README.md tsconfig.json package.json .oxfmtrc.json .oxlintrc.json .github/workflows/quality.yml",
+    "typecheck": ".ci/node_modules/.bin/tsc -p tsconfig.json"
+  },
+  "devDependencies": {
+    "@types/react": "19.2.17",
+    "react": "19.2.7"
+  }
+}

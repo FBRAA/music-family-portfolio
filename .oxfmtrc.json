@@ -1,0 +1,16 @@
+{
+  "semi": true,
+  "singleQuote": true,
+  "tabWidth": 2,
+  "printWidth": 100,
+  "sortPackageJson": false,
+  "ignorePatterns": [
+    "**/node_modules/**",
+    "**/dist/**",
+    "**/dist-vps/**",
+    "**/output/**",
+    "**/artifacts/**",
+    "**/.data/**",
+    "**/package-lock.json"
+  ]
+}

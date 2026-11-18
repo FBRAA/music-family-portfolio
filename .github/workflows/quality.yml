@@ -1,0 +1,25 @@
+name: Quality
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - run: npm ci --ignore-scripts --no-audit --no-fund
+      - run: npm ci --prefix .ci --ignore-scripts --no-audit --no-fund
+      - run: npm run lint
+      - run: npm run format:check
+      - run: npm run typecheck
