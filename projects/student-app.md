@@ -6,7 +6,7 @@ The student PWA brings together practice assignments, recorded attempts and teac
 
 The [pitch tracker](../samples/student-app/usePitchTracker.ts) obtains a microphone stream with `getUserMedia` and reads time-domain frames through a Web Audio analyser. It uses a YIN-style difference function to estimate periodicity, checks signal strength and confidence, and converts the result to a MIDI note and a signed cent offset. The same hook exposes note parsing and frequency conversion helpers for a target pitch.
 
-Pitch estimates can jump by an octave or fluctuate in noise. The hook tracks previous readings, limits the rate of visible updates and drops a stale reading after repeated misses. It cancels the animation loop, closes the audio context and stops the microphone tracks on cleanup.
+Pitch estimates can jump by an octave or fluctuate in noise. The hook tracks previous readings, limits the rate of visible updates and drops a stale reading after repeated misses. Cleanup for an established session cancels the animation loop, closes the audio context and stops the microphone tracks. Unmounting while microphone permission is pending can leave the async startup running. A production follow-up would cancel or dispose of a stream that resolves after unmount.
 
 The hook handles browser permission and missing-device errors. It needs a secure context and a microphone when mounted in a browser. The TypeScript sample can be read independently. A React host page is needed to try live tracking.
 
